@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import Product 
 
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product 
+        fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField(read_only = True)
@@ -36,7 +40,3 @@ class UserSerializerWithToken(UserSerializer):
         token = RefreshToken.for_user(obj)
         return str(token)
 
-class ProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product 
-        fields = '__all__'

@@ -4,7 +4,8 @@ import {Form, Button, Row, Col} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import {getUserDetails} from '../actions/userActions'
+import {getUserDetails, updateUserProfile} from '../actions/userActions'
+import {USER_UPDATE_PROFILE_RESET} from '../constants/userConstants'
 
 function ProfileScreen({history}) {
     const  [name, setName] = useState('')
@@ -22,6 +23,10 @@ function ProfileScreen({history}) {
     const { userInfo } = userLogin
 
 
+    const userUpdateProfile = useSelector(state => state.userUpdateProfile)
+    const { success } = userUpdateProfile
+
+
     useEffect(() => {
         if(!userInfo)
         {
@@ -29,8 +34,9 @@ function ProfileScreen({history}) {
         }
         else
         {
-            if(!user || !user.name)
+            if(!user || !user.name || success)
             {
+                dispatch({type: USER_UPDATE_PROFILE_RESET })
                 dispatch(getUserDetails('profile'))
             }
             else
@@ -40,7 +46,7 @@ function ProfileScreen({history}) {
 
             }
         }
-    }, [dispatch, history, userInfo, user ])
+    }, [dispatch, history, userInfo, user, success ])
 
 
 
@@ -52,7 +58,12 @@ function ProfileScreen({history}) {
         }
         else
         {
-            console.log('Updating')
+            dispatch(updateUserProfile({
+                'id': user._id,
+                'name': name,
+                'email': email,
+                'password': password
+            }))
 
         }
 

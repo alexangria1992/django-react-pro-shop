@@ -64,12 +64,17 @@ import {USER_LOGIN_REQUEST,
             }
 
             const {data} = await axios.post(
-                '/api/users/register/', {'username': email, 'password': password},
+                '/api/users/register/', {'name' : name, 'email': email, 'password': password},
                 config
                 )
 
                 dispatch({
                     type: USER_REGISTER_SUCCESS,
+                    payload: data
+                })
+                
+                dispatch({
+                    type: USER_LOGIN_SUCCESS,
                     payload: data
                 })
 

@@ -31,12 +31,12 @@ function PaymentScreen({history}) {
                     <Form.Label as='legend'>Select Payment Method</Form.Label>
                     <Col>
                         <Form.Check 
-                        type="radio"
-                        label="Paypal or Credit Card"
-                        id="paypal" 
-                        name="paymentMethod"
-                        checked
-                        onChange={(e) => setPaymentMethod(e.target.value) }
+                            type='radio'
+                            label='Paypal or Credit Card'
+                            id='paypal'
+                            name='paymentMethod'
+                            checked
+                            onChange={(e) => setPaymentMethod(e.target.value) }
                         >
 
                         </Form.Check>

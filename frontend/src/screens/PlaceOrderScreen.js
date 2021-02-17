@@ -37,7 +37,7 @@ function PlaceOrderScreen({history}) {
         dispatch(createOrder({
             orderItems:cart.cartItems,
             shippingAddress:cart.shippingAddress,
-            paymentMehod:cart.paymentMethod,
+            paymentMethod:cart.paymentMethod,
             itemsPrice:cart.itemsPrice, 
             shippingPrice:cart.shippingPrice,
             taxPrice:cart.taxPrice,

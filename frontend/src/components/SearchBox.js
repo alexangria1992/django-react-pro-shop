@@ -12,7 +12,7 @@ const submitHandler = (e) => {
     e.preventDefault()
     if(keyword)
     {
-        history.push(`/?keyword=${keyword}`)
+        history.push(`/?keyword=${keyword}&page=1`)
     }
     else 
     {
